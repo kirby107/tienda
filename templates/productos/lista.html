@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">🛍 Productos</h2>
+
+<div class="row">
+
+{% for p in productos %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+
+            <div class="card-body">
+                <h5 class="card-title">{{ p.nombre }}</h5>
+                <p class="card-text">Precio: S/. {{ p.precio }}</p>
+
+                <a href="/carrito/agregar/{{ p.id }}/" class="btn btn-primary">
+                    Agregar al carrito
+                </a>
+            </div>
+
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}
