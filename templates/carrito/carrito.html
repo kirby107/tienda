@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">🛒 Mi Carrito</h2>
+
+    {% if carrito %}
+
+        <div class="row">
+
+            <!-- LISTA DE PRODUCTOS -->
+            <div class="col-md-8">
+
+                {% for key, item in carrito.items %}
+
+                    <div class="card mb-3 shadow-sm">
+
+                        <div class="card-body d-flex justify-content-between align-items-center">
+
+                            <div>
+
+                                <h5 class="mb-1">{{ item.nombre }}</h5>
+
+                                <p class="mb-1 text-muted">
+                                    Precio: S/. {{ item.precio }}
+                                </p>
+
+                                <p class="mb-0">
+                                    Cantidad: <strong>{{ item.cantidad }}</strong>
+                                </p>
+
+                            </div>
+
+                            <div>
+
+                                <a href="/carrito/eliminar/{{ key }}/"
+                                   class="btn btn-danger btn-sm">
+                                    ❌ Eliminar
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            <!-- RESUMEN -->
+            <div class="col-md-4">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-body">
+
+                        <h4>Resumen</h4>
+
+                        <hr>
+
+                        <h5 class="text-success">
+                            Total: S/. {{ total }}
+                        </h5>
+
+                        <button class="btn btn-primary w-100 mt-3">
+                            💳 Finalizar compra
+                        </button>
+
+                        <a href="/" class="btn btn-outline-secondary w-100 mt-2">
+                            Seguir comprando
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-warning">
+            Tu carrito está vacío 🛒
+        </div>
+
+        <a href="/" class="btn btn-primary">
+            Ir a productos
+        </a>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
